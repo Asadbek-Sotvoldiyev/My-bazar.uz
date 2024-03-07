@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="login">
+        <form action="" method="post" class="login-form">
+            <h2>Kirish</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="login_btn">Kirish</button>
+        <p>Akkountingiz yo'qmi? <a href="{% url 'users:register' %}">Ro'yxatdan o'tish</a></p>
+        </form>
+    </div>
+
+{% endblock %}
