@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import Collection, Category, Product, Season
 
-# Register your models here.
+admin.site.register([Collection, Category, Product, Season])
