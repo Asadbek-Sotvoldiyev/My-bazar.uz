@@ -28,11 +28,32 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Batafsil</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</a>
+                        <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0" id="add-cart" value="{{ product.id }}"><i class="fas fa-eye text-primary mr-1"></i>Batafsil</a>
+                        <button id="add-cart" value="{{ product.id }}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</button>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+<script>
+     $(document).on('click', '#add-cart', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart:add_cart' %}",
+            data: {
+                product_id: $('#add-cart').val(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'post',
+            },
+            success: function(json){
+                console.log(json);
+                $('.qty').text(json.cart_items);
+            },
+            error: function(xhr, errmsg, err){
+
+            }
+        });
+    });
+</script>
