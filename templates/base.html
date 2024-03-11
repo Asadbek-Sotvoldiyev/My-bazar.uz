@@ -21,6 +21,7 @@
 
     <!-- Libraries Stylesheet -->
     <link href="{% static 'myapp/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static 'myapp/css/style.css' %}" rel="stylesheet">
@@ -82,9 +83,9 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="" class="btn border">
+                <a href="{% url 'cart:cart_summary' %}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">{{ cart|length }}</span>
                 </a>
             </div>
         </div>

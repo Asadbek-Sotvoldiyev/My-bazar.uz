@@ -1,6 +1,7 @@
 from django.db.models import Count
 
 from .models import Collection, Category, Product
+from cart.cart import Cart
 
 
 def my_context_processor(request):
@@ -20,3 +21,6 @@ def my_context_processor(request):
     }
 
     return data
+
+def cart(request):
+    return {"cart":Cart(request)}

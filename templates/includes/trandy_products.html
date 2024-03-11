@@ -1,13 +1,13 @@
 {% load static %}
 <div class="container-fluid pt-5">
-        <div class="text-center mb-4">
-            {% if request.path == '/' %}
-            	<h2 class="section-title px-5"><span class="px-2">Eng qaynoq to'plam</span></h2>
-            {% endif %} 
-        </div>
-        <div class="row px-xl-5 pb-3">
-            {% for product in products %}
-            	<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+    <div class="text-center mb-4">
+        {% if request.path == '/' %}
+            <h2 class="section-title px-5"><span class="px-2">Eng qaynoq to'plam</span></h2>
+        {% endif %}
+    </div>
+    <div class="row px-xl-5 pb-3">
+        {% for product in products %}
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                         <img class="img-fluid w-100" src="{{ product.image1.url }}" alt="">
@@ -16,44 +16,93 @@
                         <h6 class="text-truncate mb-3">{{ product.name }}</h6>
                         <div class="d-flex justify-content-center">
                             {% if product.ceil %}
-                            	{% for ceil, price in ceils.items %}
-                            		{% if ceil == product.id %}
-                            			<h6>{{ price }}</h6><h6 class="text-muted ml-2"><del>{{ product.price }}</del></h6>
-                            		{% endif %}
-                            	{% endfor %}
-
+                                {% for ceil, price in ceils.items %}
+                                    {% if ceil == product.id %}
+                                        <h6>{{ price }}</h6><h6 class="text-muted ml-2"><del>{{ product.price }}</del></h6>
+                                    {% endif %}
+                                {% endfor %}
                             {% else %}
                                 <h6>{{ product.price }}</h6><h6 class="text-muted ml-2"></h6>
                             {% endif %}
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0" id="add-cart" value="{{ product.id }}"><i class="fas fa-eye text-primary mr-1"></i>Batafsil</a>
-                        <button id="add-cart" value="{{ product.id }}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</button>
+                        <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0" id="view-details"><i class="fas fa-eye text-primary mr-1"></i>Batafsil</a>
+                        <button class="btn btn-sm text-dark p-0 add-to-cart-btn" data-product-id="{{ product.pk }}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</button>
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
+        {% endfor %}
     </div>
-<script>
-     $(document).on('click', '#add-cart', function(e){
-        e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: "{% url 'cart:add_cart' %}",
-            data: {
-                product_id: $('#add-cart').val(),
-                csrfmiddlewaretoken: "{{ csrf_token }}",
-                action: 'post',
-            },
-            success: function(json){
-                console.log(json);
-                $('.qty').text(json.cart_items);
-            },
-            error: function(xhr, errmsg, err){
+</div>
 
+<!-- Modal -->
+<div id="cartModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <!-- <span class="close">&times;</span> -->
+    <p>Maxsulot savatchaga qo'shildi!</p>
+    <div class="modal-btn">
+      <button class="btn btn-primary ok-btn" id="close">OK</button>
+      <a href="{% url 'cart:cart_summary' %}" class="btn btn-primary ok-btn">Mahsulotlarni rasmiylashtirish</a>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Modalni ochish uchun funksiya
+    function openModal() {
+        var modal = document.getElementById("cartModal");
+        modal.style.display = "block";
+        // Modalni 2 sekund so'ng yopish
+        setTimeout(function(){
+            closeModal();
+            location.reload();
+            }, 2000);
+    }
+
+    // Modalni yopish uchun funksiya
+    function closeModal() {
+        var modal = document.getElementById("cartModal");
+        modal.style.display = "none";
+    }
+
+    // Add to Cart tugmasi bosilganda modalni ochish
+    $(document).on('click', '.add-to-cart-btn', function(e){
+        let quantity = 1;
+        $.ajax(
+            {
+                type: "POST",
+                url: "{% url 'cart:add_cart' %}",
+                data: {
+                    product_id: $(this).data('product-id'),
+                    quantity: quantity,
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post',
+                },
+                success: function(json){
+                    console.log(json);
+                    openModal();
+                },
+                error: function(msg, err){
+
+                }
             }
-        });
+        );
+    });
+
+    // Modalni yopish tugmasi
+    $(document).on('click', '#close', function(){
+        closeModal();
+        location.reload()
+    });
+
+    // Foydalanuvchi modalni chiqarishni rad qilsa
+    $(document).on('click', function(event) {
+        var modal = document.getElementById("cartModal");
+        if (event.target == modal) {
+            closeModal();
+            location.reload()
+        }
     });
 </script>
