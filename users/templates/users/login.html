@@ -2,11 +2,11 @@
 
 {% block content %}
     <div class="login">
-        <form action="" method="post" class="login-form">
+        <form action="" method="post" class="login-form col-lg-6 col-md-6 col-sm-4">
             <h2>Kirish</h2>
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="login_btn">Kirish</button>
+        <button class="mbr-section-btn mt-3 btn btn-primary display-7" type="submit">Kirish</button>
         <p>Akkountingiz yo'qmi? <a href="{% url 'users:register' %}">Ro'yxatdan o'tish</a></p>
         </form>
     </div>

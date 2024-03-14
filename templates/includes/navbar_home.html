@@ -12,7 +12,7 @@
                             <a href="#" class="nav-link" data-toggle="dropdown">Kolleksiyalar <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 {% for collect in collections %}
-                                	<a href="" class="dropdown-item">{{collect.name}}</a>
+                                	<a href="{%  url 'collection' collect.id %}" class="dropdown-item">{{collect.name}}</a>
                                 {% endfor %}
 
 
@@ -34,18 +34,13 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="{% url 'index' %}" class="nav-item nav-link active">Bosh sahifa</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                         <div class="navbar-nav mr-auto py-0">
+                            <a href="{% url 'index' %}" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Bosh sahifa</a>
+                         {% for collection in collections %}
+                         	<a href="{% url 'collection' collection.id %}" class="nav-item nav-link {% if collection.id in request.path %}active{% endif %}">{{ collection.name }}</a>
+                         {% endfor %}
+                            <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">Biz haqimizda</a>
+                            <a href="{% url 'contact' %}" class="nav-item nav-link {% if request.path == '/contact/' %}active{% endif %}">Bog'lanish</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             {% if user.is_authenticated %}

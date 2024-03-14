@@ -8,7 +8,7 @@
             	<div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="{{ product.image1.url }}" alt="">
+                       <a href="{% url 'detail' product.pk %}"><img class="img-fluid w-100" src="{{ product.image1.url }}" alt=""></a>
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{{ product.name }}</h6>
@@ -27,10 +27,180 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Batafsil</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</a>
+                        {% if product.id|slugify in fav_prod %}
+                            <button class="btn btn-sm text-dark p-0 solid" data-product-id="{{ product.pk }}" id="solid{{ product.id }}"><i class="fa-solid fa-heart text-primary mr-1 {{ product.id }}" style="font-size: 25px;" id="solid"></i></button>
+                        {% else %}
+                            <button class="btn btn-sm text-dark p-0 regular" data-product-id="{{ product.pk }}" id="favorite{{ product.id }}"><i class="fa-regular fa-heart text-primary mr-1 {{ product.id }}" style="font-size: 25px;" id="regular"></i></button>
+                        {% endif %}
+                        <button class="btn btn-sm text-dark p-0 add-to-cart-btn" data-product-id="{{ product.pk }}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</button>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+
+<div id="cartModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <!-- <span class="close">&times;</span> -->
+    <p>Maxsulot savatchaga qo'shildi!</p>
+      <div class="rasm">
+          <img src="" alt="" id="prod-rasm" width="70px">
+          <div class="prod-name">
+              <p>Nomi: <span id="nomi"></span></p>
+              <p>Soni: <span id="soni"></span></p>
+          </div>
+      </div>
+    <div class="modal-btn">
+      <button class="btn btn-primary ok-btn" id="close">OK</button>
+      <a href="{% url 'cart:cart_summary' %}" class="btn btn-primary ok-btn">Mahsulotlarni rasmiylashtirish</a>
+    </div>
+  </div>
+</div>
+
+{#FAVORITE MODAL#}
+<div id="favoriteModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <!-- <span class="close">&times;</span> -->
+    <p>Sevimlilarga qo'shildi!</p>
+      <div class="rasm">
+          <img src="" alt="" id="prod-rasmi" width="70px">
+          <div class="prod-name">
+              <p>Nomi: <span id="nom"></span></p>
+              <p>Narxi: <span id="narx"></span></p>
+
+          </div>
+      </div>
+    <div class="modal-btn">
+      <button class="btn btn-primary ok-btn" id="close">OK</button>
+      <a href="{% url 'favorite:favorites' %}" class="btn btn-primary ok-btn">Sevimlilarga o'tish</a>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Modalni ochish uchun funksiya
+    function openModal() {
+        var modal = document.getElementById("cartModal");
+        modal.style.display = "block";
+        // Modalni 2 sekund so'ng yopish
+        setTimeout(function(){
+            closeModal();
+            location.reload();
+            }, 2000);
+    }
+
+    // Modalni yopish uchun funksiya
+    function closeModal() {
+        var modal = document.getElementById("cartModal");
+        modal.style.display = "none";
+    }
+
+    // Add to Cart tugmasi bosilganda modalni ochish
+    $(document).on('click', '.add-to-cart-btn', function(e){
+        let quantity = 1;
+        let image = document.getElementById('prod-rasm').src;
+        let nomi = document.getElementById('nomi');
+        let soni = document.getElementById('soni');
+        $.ajax(
+            {
+                type: "POST",
+                url: "{% url 'cart:add_cart' %}",
+                data: {
+                    product_id: $(this).data('product-id'),
+                    quantity: quantity,
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post',
+                },
+                success: function(json){
+                    $('#prod-rasm').attr('src', json.image);
+                    nomi.textContent = json.name;
+                    soni.textContent = json.quantity;
+                    openModal();
+                },
+                error: function(msg, err){
+
+                }
+            }
+        );
+    });
+
+    // Modalni yopish tugmasi
+    $(document).on('click', '#close', function(){
+        closeModal();
+        location.reload()
+    });
+
+    // Foydalanuvchi modalni chiqarishni rad qilsa
+    $(document).on('click', function(event) {
+        var modal = document.getElementById("cartModal");
+        if (event.target == modal) {
+            closeModal();
+            location.reload()
+        }
+    });
+
+        {#______________________________FAVORITES________________________________________#}
+    function openfModal() {
+        var modal = document.getElementById("favoriteModal");
+        modal.style.display = "block";
+        // Modalni 2 sekund so'ng yopish
+        setTimeout(function(){
+            closeModal();
+            location.reload();
+            }, 2000);
+    }
+
+
+    $(document).on('click', '.regular', function(e){
+        e.preventDefault();
+        let nomi = document.getElementById('nom');
+        let narx = document.getElementById('narx');
+        var product_id = $(this).data('product-id');
+        $.ajax(
+            {
+                type: "POST",
+                url: "{% url 'favorite:add_favorite' %}",
+                data: {
+                    product_id: product_id ,
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post',
+                },
+                success: function(json){
+                    $('#prod-rasmi').attr('src', json.image);
+                    nomi.textContent = json.name;
+                    narx.textContent = json.narx;
+                    openfModal();
+                },
+                error: function(msg, err){
+
+                }
+            }
+        );
+    });
+
+
+    $(document).on('click', '.solid', function(e){
+        e.preventDefault();
+        var product_id = $(this).data('product-id');
+        $.ajax(
+            {
+                type: "POST",
+                url: "{% url 'favorite:del_favorite' %}",
+                data: {
+                    product_id: product_id ,
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    action: 'post',
+                },
+                success: function(json){
+                    location.reload();
+                },
+                error: function(msg, err){
+
+                }
+            }
+        );
+    });
+</script>

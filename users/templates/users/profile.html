@@ -3,16 +3,16 @@
 
 {% block content %}
     <div class="login">
-        <form action="" method="post" class="login-form" enctype="multipart/form-data">
-            <h2>Mening ma'lumotlarim</h2>
+        <form action="" method="post" class="login-form col-lg-6 col-md-8 col-sm-4" enctype="multipart/form-data" style="text-align: center">
             {% if user.image %}
-            	<img src="{{ user.image.url }}" alt="" width="200px" class="user-photo">
+            	<img src="{{ user.image.url }}" alt="" class="user-photo col-lg-3 col-md-4 col-sm-2 w-50" width="100%" height="auto">
+
             {% else %}
-                <img src="https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg" alt="" width="200px" class="user-photo">
+                <img src="https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg" alt="" width="200px" class="user-photo col-lg-6 col-md-8 col-sm-4">
             {% endif %}
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="login_btn">Saqlash</button>
+        <button class="mbr-section-btn mt-3 btn btn-primary display-7 w-100" type="submit">Saqlash</button>
         </form>
     </div>
 

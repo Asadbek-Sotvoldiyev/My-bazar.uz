@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'myapp.apps.MyappConfig',
     'users.apps.UsersConfig',
     'cart.apps.CartConfig',
+    'favorite.apps.FavoriteConfig',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'myapp.context_processors.my_context_processor',
                 'myapp.context_processors.cart',
+                'favorite.context_processors.favorite'
             ],
         },
     },

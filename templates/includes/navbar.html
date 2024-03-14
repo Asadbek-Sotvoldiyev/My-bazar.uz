@@ -34,21 +34,41 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="{% url 'index' %}" class="nav-item nav-link">Bosh sahifa</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link active">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="{% url 'index' %}" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Bosh sahifa</a>
+                            {% for collection in collections %}
+                         	<a href="{% url 'collection' collection.id %}" class="nav-item nav-link {% if collection.id|slugify in request.path %}active{% endif %}">{{ collection.name }}</a>
+                         {% endfor %}
+                            <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">Biz haqimizda</a>
+                            <a href="{% url 'contact' %}" class="nav-item nav-link {% if request.path == '/contact/' %}active{% endif %}">Bog'lanish</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            <div class="navbar-nav ml-auto py-0">
+                            {% if user.is_authenticated %}
+                            	<div class="btn-group dropleft">
+                                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      {% if user.image %}
+                                      	    <img class="profile-icon" src="{{ user.image.url }}" alt="" width="30px">&nbsp;{{ user.username}}
+                                      {% else %}
+                                            <img class="profile-icon" src="https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg" alt="" width="40px">&nbsp;{{ user.username}}
+                                      {% endif %}
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{% url 'users:profile' %}">Profilim</a>
+                                    <a class="dropdown-item" href="{% url 'users:logout' %}">Chiqish</a>
+                                  </div>
+                                </div>
+                            {% else %}
+                                <div class="btn-group dropleft">
+                                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="profile-icon" src="https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg" alt="" width="40px">&nbsp;Profilim
+                                  </button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'users:login' %}">Kirish</a>
+                                    <a class="dropdown-item" href="{% url 'users:register' %}">Ro'yxatdan o'tish</a>
+                                  </div>
+                                </div>
+                            {% endif %}
+                        </div>
                         </div>
                     </div>
                 </nav>

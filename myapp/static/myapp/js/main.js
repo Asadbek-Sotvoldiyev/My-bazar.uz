@@ -88,17 +88,49 @@
     $('.quantity button').on('click', function () {
         var button = $(this);
         var oldValue = button.parent().parent().find('input').val();
+        var product_id = button.data('index')
+        var cartUpdateUrl = button.data('cart-update-url');
         if (button.hasClass('btn-plus')) {
             var newVal = parseFloat(oldValue) + 1;
+            $.ajax(
+                {
+                    type: "GET",
+                    url: cartUpdateUrl,
+                    data:{
+                        product_id: product_id,
+                        newVal: newVal,
+                        action: "get",
+                    },
+                    success: function(json){
+                        console.log(json)
+                        location.reload()
+                    }
+                }
+            )
         } else {
-            if (oldValue > 0) {
+            if (oldValue > 1) {
                 var newVal = parseFloat(oldValue) - 1;
+                $.ajax(
+                {
+                    type: "GET",
+                    url: cartUpdateUrl,
+                    data:{
+                        product_id: product_id,
+                        newVal: newVal,
+                        action: "get",
+                    },
+                    success: function(json){
+                        console.log(json)
+                        location.reload()
+                    }
+                }
+            )
             } else {
-                newVal = 0;
+                newVal = 1;
             }
         }
         button.parent().parent().find('input').val(newVal);
     });
-    
+
 })(jQuery);
 
