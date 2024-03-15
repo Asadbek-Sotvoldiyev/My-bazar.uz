@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'includes/navbar.html' %}
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Buyurtmalarim</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="{% url 'index' %}">Bosh sahifa</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Buyurtmalarim</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="buyurtma login">
+        <table class="table align-middle mb-1 bg-white w-75">
+          <thead class="bg-light">
+            <tr>
+              <th>Buyurtma raqami</th>
+              <th>Mahsulotlar</th>
+              <th>Narxi</th>
+              <th>Soni</th>
+              <th>Umumiy narx</th>
+              <th>Chek</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for key,value in orders.items %}
+            	<tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1">{{ key.order_id|truncatechars:5|linebreaks}}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    {% for foo in value %}
+                    	<p class="fw-normal mb-1">{{ foo.name}}</p>
+                    {% endfor %}
+
+                  </td>
+                  <td>
+                      {% for foo in value %}
+                    	<span class="badge badge-success rounded-pill d-block mb-4">{{ foo.price }}</span>
+                    {% endfor %}
+                  </td>
+                  <td>
+                  {% for foo in value %}
+                  	<p>{{ foo.quantity }} ta</p>
+                  {% endfor %}
+                  </td>
+                  <td>
+                    <span class="badge badge-warning rounded-pill d-block">{{ key.total }}</span>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                      <i class="fa-solid fa-download"></i>
+                    </button>
+                  </td>
+                </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+    </div>
+
+{% endblock %}

@@ -46,3 +46,10 @@ class Cart:
             del self.cart[product_id]
 
         self.session.modified = True
+
+    def clear_cart(self):
+        self.cart.clear()
+
+        self.session.modified = True
+
+        return True

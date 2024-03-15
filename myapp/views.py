@@ -68,7 +68,6 @@ def contact(request):
 def collection(request, id):
     collection = Collection.objects.get(pk=id)
     products = Product.objects.filter(category__collection=collection)
-    print(products)
     favorites = Favorite(request)
     fav_prod = favorites.favorites()
 

@@ -9664,3 +9664,90 @@ a.text-dark:hover, a.text-dark:focus {
 .yopiq{
   display: none;
 }
+
+/*VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV*/
+
+
+
+ /* The Modal (background) */
+.bmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.bmodal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.bclose {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.bclose:hover,
+.bclose:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+
+.card {
+    margin-bottom: 30px;
+    border: 0;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    letter-spacing: .5px;
+    border-radius: 8px;
+    -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+}
+
+.card .card-header {
+    background-color: #fff;
+    border-bottom: none;
+    padding: 24px;
+    border-bottom: 1px solid #f6f7fb;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+
+
+.card .card-body {
+    padding: 30px;
+    background-color: transparent;
+}
+
+
+#contin{
+  background-color: #D19C97;
+  color: #0f0f0f;
+}
+
+#contin:hover{
+  background-color:#C17A74;
+  color: #FFFFFF;
+}

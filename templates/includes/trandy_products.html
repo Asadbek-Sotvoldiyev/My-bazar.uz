@@ -42,9 +42,9 @@
 </div>
 
 <!-- cart Modal -->
-<div id="cartModal" class="modal">
+<div id="cartModal" class="modal col-lg-8 col-md-10 col-sm-4 w-100">
   <!-- Modal content -->
-  <div class="modal-content">
+  <div class="modal-content col-lg-8 col-md-10 col-sm-4 w-100">
     <!-- <span class="close">&times;</span> -->
     <p>Maxsulot savatchaga qo'shildi!</p>
       <div class="rasm">
@@ -56,21 +56,21 @@
       </div>
     <div class="modal-btn">
       <button class="btn btn-primary ok-btn" id="close">OK</button>
-      <a href="{% url 'cart:cart_summary' %}" class="btn btn-primary ok-btn">Mahsulotlarni rasmiylashtirish</a>
+      <a href="{% url 'cart:cart_summary' %}" class="btn btn-primary ok-btn">Savatchaga o'tish</a>
     </div>
   </div>
 </div>
 
 {#FAVORITE MODAL#}
-<div id="favoriteModal" class="modal">
+<div id="favoriteModal" class="modal col-lg-8 col-md-10 col-sm-4 w-100">
   <!-- Modal content -->
-  <div class="modal-content">
+  <div class="modal-content col-lg-8 col-md-10 col-sm-4 w-100">
     <!-- <span class="close">&times;</span> -->
     <p>Sevimlilarga qo'shildi!</p>
       <div class="rasm">
           <img src="" alt="" id="prod-rasmi" width="70px">
           <div class="prod-name">
-              <p>Nomi: <span id="nom"></span></p>venv\
+              <p>Nomi: <span id="nom"></span></p>
               <p>Narxi: <span id="narx"></span></p>
 
           </div>

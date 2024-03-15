@@ -41,6 +41,9 @@
                          {% endfor %}
                             <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">Biz haqimizda</a>
                             <a href="{% url 'contact' %}" class="nav-item nav-link {% if request.path == '/contact/' %}active{% endif %}">Bog'lanish</a>
+                            {% if user.is_authenticated %}
+                            	<a href="{% url 'cart:buyurtmalar' %}" class="nav-item nav-link {% if request.path == '/cart/buyurtmalar/' %}active{% endif %}">Buyurtmalarim</a>
+                            {% endif %}
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             {% if user.is_authenticated %}

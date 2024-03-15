@@ -1,8 +1,14 @@
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+import uuid
 
-from myapp.models import Product
+from django.core.exceptions import ValidationError
+from django.http import JsonResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import View
+from myapp.models import Product, Order, OrderItem
 from .cart import Cart
+from myapp.telegram_message import main
+import asyncio
 
 
 def cart_summary(request):
@@ -73,3 +79,70 @@ def delete_cart(request):
         cart.delete(request.POST.get('product_id'))
         return JsonResponse({'status':"O'chirildi"})
     return render(request, 'cart/cart_summary.html')
+
+def order(request):
+
+    cart = Cart(request)
+    products = cart.get_products()
+    prod_count = cart.get_quantity()
+
+    chegirmalar = {}
+    for product in products:
+        if product.ceil > 0:
+            chegirmalar[product.id] = product.price - product.price * product.ceil / 100
+
+    product_total = {}
+    total_ceil = 0
+    for product in products:
+        if product.ceil > 0:
+            product_total[product.id] = chegirmalar[product.id] * int(prod_count[str(product.id)])
+            total_ceil += product.price * int(prod_count[str(product.id)])
+        else:
+            product_total[product.id] = product.price * int(prod_count[str(product.id)])
+            total_ceil += product.price * int(prod_count[str(product.id)])
+
+    total = 0
+    for key, value in product_total.items():
+        total += value
+
+    try:
+        order = Order()
+        order.order_id = uuid.uuid4()
+        order.total = total
+        order.user = request.user
+        order.save()
+    except:
+        raise ValidationError("Order saqlashda xatolik")
+
+    a = 0
+    text = f"Buyurtma raqami: {order.order_id}\n\nMahsulotlar:\n"
+    try:
+        for product in products:
+            order_item = OrderItem()
+            order_item.order = order
+            order_item.product_id = product.id
+            order_item.price = product.price
+            order_item.name = product.name
+            order_item.quantity = prod_count[str(product.id)]
+            a += 1
+            text += f"{a}.{order_item.name}\nNarxi:{order_item.price}\nSoni:{order_item.quantity}"
+            order_item.save()
+
+    except:
+        raise ValidationError("OrderItem saqlashda xatolik")
+
+
+    text+=f"\n\nUmumiy summa: {order.total}\nBuyurtma beruvchi: {request.user.username}\nEmail: {request.user.email}"
+    asyncio.run(main(text))
+    cart.clear_cart()
+
+    return HttpResponseRedirect(reverse_lazy('cart:buyurtmalar'))
+
+def buyurtma(request):
+    orders = Order.objects.filter(user=request.user)
+    data = {}
+    for order in orders:
+        data[order] = OrderItem.objects.filter(order_id=order.id)
+
+
+    return render(request, 'cart/buyurtmalar.html', {"orders": data})
