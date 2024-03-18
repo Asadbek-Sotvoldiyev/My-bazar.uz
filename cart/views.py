@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
@@ -139,6 +140,7 @@ def order(request):
 
     return HttpResponseRedirect(reverse_lazy('cart:buyurtmalar'))
 
+@login_required
 def buyurtma(request):
     cart = Cart(request)
     orders = Order.objects.filter(user=request.user)
