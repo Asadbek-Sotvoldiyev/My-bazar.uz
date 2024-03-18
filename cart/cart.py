@@ -10,12 +10,12 @@ class Cart:
             cart = self.session['session_key'] = {}
         self.cart = cart
 
-    def add(self, product, quantity):
+    def add(self, product):
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = str(quantity)
-        else:
-            self.cart[product_id] = str(int(self.cart[product_id]) + quantity)
+            self.cart[product_id] = str(1)
+        elif product_id in self.cart:
+            self.cart[product_id] = str(int(self.cart[product_id])+1)
 
         self.session.modified = True
 

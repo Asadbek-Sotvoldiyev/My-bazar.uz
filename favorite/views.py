@@ -17,9 +17,9 @@ def favorites(request):
 
 def add_favorite(request):
     favorite = Favorite(request)
-    if request.POST.get('action') == 'post':
-        favorite.add(request.POST.get('product_id'))
-        product = Product.objects.get(id=request.POST.get('product_id'))
+    if request.GET.get('action') == 'get':
+        favorite.add(request.GET.get('product_id'))
+        product = Product.objects.get(id=request.GET.get('product_id'))
         narx = 0
         if product.ceil>0:
             narx = product.price - product.price*product.ceil/100
@@ -32,8 +32,8 @@ def add_favorite(request):
 
 def del_favorite(request):
     favorite = Favorite(request)
-    if request.POST.get('action') == 'post':
-        favorite.dell(request.POST.get('product_id'))
+    if request.GET.get('action') == 'get':
+        favorite.dell(request.GET.get('product_id'))
 
         return JsonResponse({'message':'Deleted'})
 

@@ -50,15 +50,16 @@ def cart_summary(request):
 
 def add_cart(request):
     cart = Cart(request)
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
-        quantity = int(request.POST.get('quantity'))
+    if request.GET.get('action') == 'get':
+        product_id = int(request.GET.get('product_id'))
         product = get_object_or_404(Product, id=product_id)
-        cart.add(product, quantity)
+        cart.add(product)
+        cart_len = len(cart)
+        print(cart_len)
         count = (cart.get_quantity()[str(product_id)])
 
 
-        return JsonResponse({'name': product.name, "image": product.image1.url, "quantity":count})
+        return JsonResponse({'name': product.name, "image": product.image1.url, "quantity":count, "cart_len":cart_len})
     return render(request, 'myapp/index.html')
 
 def cart_update(request):
@@ -139,7 +140,10 @@ def order(request):
     return HttpResponseRedirect(reverse_lazy('cart:buyurtmalar'))
 
 def buyurtma(request):
+    cart = Cart(request)
     orders = Order.objects.filter(user=request.user)
+
+
     data = {}
     for order in orders:
         data[order] = OrderItem.objects.filter(order_id=order.id)

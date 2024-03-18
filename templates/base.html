@@ -88,7 +88,7 @@
                 </a>
                 <a href="{% url 'cart:cart_summary' %}" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">{{ cart|length }}</span>
+                    <span class="badge" id="cart_count">{{ cart|length }}</span>
                 </a>
             </div>
         </div>
@@ -167,7 +167,8 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'myapp/js/main.js' %}"></script>
-    <script src="{% static 'myapp/js/index.js' %}"></script>
+    <script src="{% static 'myapp/js/script.js' %}"></script>
+
 </body>
 
 </html>
