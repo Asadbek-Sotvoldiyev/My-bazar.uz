@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
     <div class="login">
         <form action="" method="post" class="login-form col-lg-6 col-md-4 col-sm-4">
-            <h2>Ro'yxatdan o'tish</h2>
+            <h2>{% translate "Ro'yxatdan o'tish" %}</h2>
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="mbr-section-btn mt-3 btn btn-primary display-7" type="submit">Ro'yxatdan o'tish</button>
-        <p>Allaqachon ro'yxatdan o'tganmisiz? <a href="{% url 'users:login' %}">Kirish</a></p>
+        <button class="mbr-section-btn mt-3 btn btn-primary display-7" type="submit">{% translate "Ro'yxatdan o'tish" %}</button>
+        <p>{% translate "Already registered?" %} <a href="{% url 'users:login' %}">{% translate 'Kirish' %}</a></p>
         </form>
     </div>
 

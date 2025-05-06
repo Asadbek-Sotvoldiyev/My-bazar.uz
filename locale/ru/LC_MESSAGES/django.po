@@ -1,0 +1,311 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-27 10:02+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "FAQs"
+msgstr "Часто задаваемые вопросы"
+
+msgid "Support"
+msgstr "Поддержка"
+
+msgid "Don't have an account?"
+msgstr "У вас нет аккаунта?"
+
+msgid "Already registered?"
+msgstr "Вы уже зарегистрированы?"
+
+msgid "Help"
+msgstr "Помощь"
+
+msgid "Search by product name..."
+msgstr "Поиск по названию товара..."
+
+msgid "Categories"
+msgstr "Категории"
+
+msgid "Collections"
+msgstr "Коллекции"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "About us"
+msgstr "О нас"
+
+msgid "Contact"
+msgstr "Контакты"
+
+msgid "My orders"
+msgstr "Мои заказы"
+
+msgid "10% discount for first order"
+msgstr "10% скидка на первый заказ"
+
+msgid "World"
+msgstr "Мир"
+
+msgid "All products"
+msgstr "Все товары"
+
+msgid "We only offer quality products"
+msgstr "У нас только качественные товары"
+
+msgid "Free delivery"
+msgstr "Бесплатная доставка"
+
+msgid "Return within 14 days"
+msgstr "Возврат в течение 14 дней"
+
+msgid "24/7 Support"
+msgstr "Поддержка 24/7"
+
+msgid "item"
+msgstr "товар"
+
+msgid "Kichik orzular va ulkan rejalar"
+msgstr "Маленькие мечты и большие планы"
+
+msgid ""
+"Aristokratlar.uz – xaridorlarga qulaylik yaratish maqsadida o‘zining "
+"logistika tizimini o‘z ichiga olgan marketpleys. Bizda mavjud bo'lgan "
+"mahsulotlar qatori kun sayin ortib bormoqda. Bizlarda sotuvchilar narxlarni "
+"o’zlari tartibga solishlari mumkin, bu esa bitta narx toifasidagi "
+"tovarlarning raqobatini oshirishiga olib keladi. Bundan tashqari, biz "
+"yetkazib beriladigan mahsulot sifatiga kafolat beramiz va tovarda nuqson "
+"aniqlanganda biz uni almashtirib beramiz."
+msgstr ""
+"Aristokratlar.uz — это маркетплейс с собственной логистической системой, "
+"созданный для удобства покупателей. Ассортимент доступных у нас товаров "
+"ежедневно расширяется. Продавцы могут самостоятельно устанавливать цены, что "
+"увеличивает конкуренцию среди товаров в одной ценовой категории. Кроме того, "
+"мы гарантируем качество доставляемой продукции и заменим товар в случае "
+"обнаружения дефекта."
+
+msgid "Bizning maqsadimiz - foyda keltirish"
+msgstr "Наша цель — приносить пользу"
+
+msgid ""
+"Biz ishonamizki, sizga kerak bo'lgan mahsulotni topish uchun ko'p vaqt va "
+"asablarni sarflashning hojati yo'q. Shuning uchun kerakli mahsulotlarni "
+"qidirish yoqimli, tez va qulay bo'lishi kerak. Biz ma'lum bir yo'nalishda "
+"mahsulot sotishni maqsad qilmaganmiz. Bizning saytimiz sizga kerak bo'lgan "
+"barcha mahsulotlarni bir joyda joylashtirish uchun yaratilgan, shunda siz "
+"umringizni qidirishga sarflamaysiz. ..."
+msgstr ""
+"Мы верим, что вам не нужно тратить много времени и нервов на поиск нужного "
+"товара. Поэтому поиск должен быть приятным, быстрым и удобным. Мы не ставим "
+"целью продажу товаров только в одном направлении. Наш сайт создан для того, "
+"чтобы вы могли найти все необходимые товары в одном месте и не тратили на "
+"это всю свою жизнь. ..."
+
+msgid "order"
+msgstr "10% скидка на первую покупку"
+
+msgid "Shop now"
+msgstr "Купить сейчас"
+
+msgid "Read more"
+msgstr "Подробнее"
+
+msgid "Add to cart"
+msgstr "В корзину"
+
+msgid "Super discounted products"
+msgstr "Супер скидки на товары"
+
+msgid ""
+"If you have any suggestions or requests, contact us. Our addresses are below"
+msgstr ""
+"Если у вас есть предложения или пожелания, свяжитесь с нами. Ниже указаны "
+"наши адреса"
+
+msgid "Quick links"
+msgstr "Быстрые ссылки"
+
+msgid "Subscribe to notifications"
+msgstr "Получать уведомления"
+
+msgid "Your email"
+msgstr "Ваш email"
+
+msgid "Your name"
+msgstr "Ваше имя"
+
+msgid "Subscribe"
+msgstr "Подписаться"
+
+msgid "All rights reserved."
+msgstr "Все права защищены."
+
+msgid "Maxsulot savatchaga qo'shildi!"
+msgstr "Товар добавлен в корзину!"
+
+#, fuzzy
+msgid "Mahsulotlarni rasmiylashtirish"
+msgstr ""
+"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Оформить заказ\n"
+"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
+"Оформление товаров"
+
+msgid "Nomi:"
+msgstr "Название:"
+
+msgid "Soni:"
+msgstr "Количество:"
+
+msgid "Sevimlilarga qo'shildi!"
+msgstr "Добавлено в избранное!"
+
+msgid "Narxi:"
+msgstr "Цена:"
+
+msgid "Sevimlilarga o'tish"
+msgstr "Перейти к избранным"
+
+msgid "Talab va takliflaringizni yuboring"
+msgstr "Отправьте ваши предложения и пожелания"
+
+msgid "Iltimos ismingizni kiriting!"
+msgstr "Пожалуйста, введите ваше имя!"
+
+msgid "Iltimos pochta manzilingizni kiriting!"
+msgstr "Пожалуйста, введите ваш email!"
+
+msgid "Yuborish"
+msgstr "Отправить"
+
+msgid "Aloqa uchun"
+msgstr "Для связи"
+
+msgid ""
+"bu 2024 yilda yo‘lga qo‘yilgan zamonaviy internet-do‘kon bo‘lib, o‘z "
+"mijozlarini yetakchi xalqaro va mahalliy ishlab chiqaruvchilarining sifatli "
+"mahsulotlari bilan xursand qiladi. Shuningdek, xaridorlarga ko‘rsatiladigan "
+"yuqori sifatli xizmat, xarid qilish jarayonining yanada tezroq va yoqimli "
+"bo‘lishini ta‘minlaydi."
+msgstr ""
+"Это современный интернет-магазин, запущенный в 2024 году, который радует "
+"своих клиентов качественными товарами ведущих международных и местных "
+"производителей. Кроме того, высокий уровень сервиса делает процесс покупки "
+"быстрее и приятнее."
+
+msgid "Manzilimiz"
+msgstr "Наш адрес"
+
+msgid "Bizda faqat sifatli mahsulotlar"
+msgstr "У нас только качественные товары"
+
+msgid "Bepul yetkazib berish"
+msgstr "Бесплатная доставка"
+
+msgid "14-kungacha qaytarib berish"
+msgstr "Возврат в течение 14 дней"
+
+msgid "24/7 Qo'llab-quvvatlash"
+msgstr "Поддержка 24/7"
+
+msgid "Mahsulot haqida"
+msgstr "О товаре"
+
+msgid "Profilim"
+msgstr "Мой профиль"
+
+msgid "Chiqish"
+msgstr "Выйти"
+
+msgid "Kirish"
+msgstr "Войти"
+
+msgid "Ro'yxatdan o'tish"
+msgstr "Зарегистрироваться"
+
+msgid "Bosh sahifa"
+msgstr "Главная страница"
+
+msgid "O'lchami:"
+msgstr "Размер:"
+
+msgid "Rangi:"
+msgstr "Цвет:"
+
+msgid "Ulashish:"
+msgstr "Поделиться:"
+
+msgid "Eng qaynoq to'plam"
+msgstr "Самая горячая коллекция"
+
+msgid "Sevimli mahsulotlar"
+msgstr "Избранные товары"
+
+msgid "Sevimli mahsulotlarim"
+msgstr "Мои избранные товары"
+
+msgid "Buyurtmalarim"
+msgstr "Мои заказы"
+
+msgid "Buyurtma raqami"
+msgstr "Номер заказа"
+
+msgid "Mahsulotlar"
+msgstr "Товары"
+
+msgid "Narxi"
+msgstr "Цена"
+
+msgid "Soni"
+msgstr "Количество"
+
+msgid "Umumiy narx"
+msgstr "Общая стоимость"
+
+msgid "Chek"
+msgstr "Чек"
+
+msgid "Rasmi"
+msgstr "Изображение"
+
+msgid "Umumiy"
+msgstr "Итого"
+
+msgid "O'chirish"
+msgstr "Удалить"
+
+msgid "Haqiqiy narx:"
+msgstr "Фактическая цена:"
+
+msgid "Tejov:"
+msgstr "Экономия:"
+
+msgid "Jami"
+msgstr "Итог"
+
+msgid "Buyurtma berish"
+msgstr "Оформить заказ"
+
+msgid "Savatchangiz bo'sh"
+msgstr "Ваша корзина пуста"
+
+msgid "Xarid qilish uchun avval savatchaga qo'shing :)"
+msgstr "Чтобы совершить покупку, сначала добавьте товары в корзину :)"
+
+msgid "Xaridni davom ettirish"
+msgstr "Продолжить покупки"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Tasdiqlash"
+msgstr "Подтвердить"

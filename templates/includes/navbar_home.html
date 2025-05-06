@@ -1,15 +1,16 @@
 {% load static %}
+{% load i18n %}
 <div class="container-fluid mb-5">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                    <h6 class="m-0">Kategoriyalar</h6>
+                    <h6 class="m-0">{% translate 'Categories' %}</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Kolleksiyalar <i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <a href="#" class="nav-link" data-toggle="dropdown">{% translate 'Collections' %} <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                 {% for collect in collections %}
                                 	<a href="{%  url 'collection' collect.id %}" class="dropdown-item">{{collect.name}}</a>
@@ -28,22 +29,37 @@
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Aristokratlar</span>uz</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                          <div class="navbar-nav mr-auto py-0">
-                            <a href="{% url 'index' %}" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Bosh sahifa</a>
+                            <a href="{% url 'index' %}" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">{% translate 'Home' %}</a>
                          {% for collection in collections %}
                          	<a href="{% url 'collection' collection.id %}" class="nav-item nav-link {% if collection.id in request.path %}active{% endif %}">{{ collection.name }}</a>
                          {% endfor %}
-                            <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">Biz haqimizda</a>
-                            <a href="{% url 'contact' %}" class="nav-item nav-link {% if request.path == '/contact/' %}active{% endif %}">Bog'lanish</a>
-                            <a href="{% url 'cart:buyurtmalar' %}" class="nav-item nav-link {% if request.path == '/cart/buyurtmalar/' %}active{% endif %}">Buyurtmalarim</a>
+                            <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">{% translate 'About us' %}</a>
+                            <a href="{% url 'contact' %}" class="nav-item nav-link {% if request.path == '/contact/' %}active{% endif %}">{% translate 'Contact' %}</a>
+                            <a href="{% url 'cart:buyurtmalar' %}" class="nav-item nav-link {% if request.path == '/cart/buyurtmalar/' %}active{% endif %}">{% translate 'My orders' %}</a>
 
                         </div>
+                    <form action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select name="language" class="form-control d-inline w-50">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input class="btn btn-outline-primary py-md-2 px-md-3" type="submit" value="Go">
+                    </form>
                         <div class="navbar-nav ml-auto py-0">
                             {% if user.is_authenticated %}
                             	<div class="btn-group dropleft">
@@ -55,18 +71,18 @@
                                       {% endif %}
                                   </button>
                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="{% url 'users:profile' %}">Profilim</a>
-                                    <a class="dropdown-item" href="{% url 'users:logout' %}">Chiqish</a>
+                                    <a class="dropdown-item" href="{% url 'users:profile' %}">{% translate 'Profilim' %}</a>
+                                    <a class="dropdown-item" href="{% url 'users:logout' %}">{% translate 'Chiqish' %}</a>
                                   </div>
                                 </div>
                             {% else %}
                                 <div class="btn-group dropleft">
                                   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="profile-icon" src="https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg" alt="" width="40px">&nbsp;Profilim
+                                    <img class="profile-icon" src="https://t4.ftcdn.net/jpg/02/89/59/55/360_F_289595573_wCKO1nxxx7HGk69z5szjvSOqPnZVTfTG.jpg" alt="" width="40px">&nbsp;{% translate 'Profilim' %}
                                   </button>
                                   <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{% url 'users:login' %}">Kirish</a>
-                                    <a class="dropdown-item" href="{% url 'users:register' %}">Ro'yxatdan o'tish</a>
+                                    <a class="dropdown-item" href="{% url 'users:login' %}">{% translate 'Kirish' %}</a>
+                                    <a class="dropdown-item" href="{% url 'users:register' %}">{% translate "Ro'yxatdan o'tish" %}</a>
                                   </div>
                                 </div>
                             {% endif %}
@@ -76,13 +92,13 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         {% for collection in collections %}
-                        <div class="carousel-item {% if collection.name == 'Kiyimlar' %}active{% endif %}" style="height: 410px;">
+                        <div class="carousel-item {% if collection.name == 'Kiyimlar' or collection.name == 'Одежда' %}active{% endif %}" style="height: 410px;">
                             <img class="img-fluid" src="{{collection.image.url}}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">Birinchi buyurtma uchun 10% chegirma</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">{{ collection.name }} dunyosi</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Barcha mahsulotlar</a>
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">{% translate '10% discount for first order' %}</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">{{ collection.name }} {% translate 'World' %}</h3>
+                                    <a href="" class="btn btn-light py-2 px-3">{% translate 'All products' %}</a>
                                 </div>
                             </div>
                         </div>

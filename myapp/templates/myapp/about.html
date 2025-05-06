@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
     {% load static %}
     {% include 'includes/navbar.html' %}
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Biz haqimizda</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">{% translate 'About us' %}</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="{% url 'index' %}">Bosh sahifa</a></p>
+                <p class="m-0"><a href="{% url 'index' %}">{% translate 'Home' %}</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Biz haqimizda</p>
+                <p class="m-0">{% translate 'About us' %}</p>
             </div>
         </div>
     </div>
@@ -22,14 +23,14 @@
 			</div>
 			<div class="col-12 col-lg col-md-12">
 				<div class="text-wrapper align-left">
-					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-4"><strong>Biz haqimizda</strong></h1>
+					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-4"><strong>{% translate 'About us' %}</strong></h1>
 					<p class="mbr-text mbr-fonts-style mb-4 display-7">
-						<b>Kichik orzular va ulkan rejalar</b><br>
-                        Big-shop.uz – xaridorlarga qulaylik yaratish maqsadida o‘zining logistika tizimini o‘z ichiga olgan marketpleys. Bizda mavjud bo'lgan mahsulotlar qatori kun sayin ortib bormoqda. Bizlarda sotuvchilar narxlarni o’zlari tartibga solishlari mumkin, bu esa bitta narx toifasidagi tovarlarning raqobatini oshirishiga olib keladi. Bundan tashqari, biz yetkazib beriladigan mahsulot sifatiga kafolat beramiz va tovarda nuqson aniqlanganda biz uni almashtirib beramiz.&nbsp;</p>
+						<b>{% translate "Kichik orzular va ulkan rejalar" %}</b><br>
+                        {% translate "Aristokratlar.uz – xaridorlarga qulaylik yaratish maqsadida o‘zining logistika tizimini o‘z ichiga olgan marketpleys. Bizda mavjud bo'lgan mahsulotlar qatori kun sayin ortib bormoqda. Bizlarda sotuvchilar narxlarni o’zlari tartibga solishlari mumkin, bu esa bitta narx toifasidagi tovarlarning raqobatini oshirishiga olib keladi. Bundan tashqari, biz yetkazib beriladigan mahsulot sifatiga kafolat beramiz va tovarda nuqson aniqlanganda biz uni almashtirib beramiz." %}&nbsp;</p>
 					<p class="mbr-text mbr-fonts-style mb-4 display-7">
-						<b>Bizning maqsadimiz - foyda keltirish</b><br>
-                        Biz ishonamizki, sizga kerak bo'lgan mahsulotni topish uchun ko'p vaqt va asablarni sarflashning hojati yo'q. Shuning uchun kerakli mahsulotlarni qidirish yoqimli, tez va qulay bo'lishi kerak. Biz ma'lum bir yo'nalishda mahsulot sotishni maqsad qilmaganmiz. Bizning saytimiz sizga kerak bo'lgan barcha mahsulotlarni bir joyda joylashtirish uchun yaratilgan, shunda siz umringizni qidirishga sarflamaysiz. ...</p>
-					<div class="mbr-section-btn mt-3"><a class="btn btn-primary display-7" href="{% url 'index' %}">Xaridni boshlash</a></div>
+						<b>{% translate "Bizning maqsadimiz - foyda keltirish" %}</b><br>
+                        {% translate "Biz ishonamizki, sizga kerak bo'lgan mahsulotni topish uchun ko'p vaqt va asablarni sarflashning hojati yo'q. Shuning uchun kerakli mahsulotlarni qidirish yoqimli, tez va qulay bo'lishi kerak. Biz ma'lum bir yo'nalishda mahsulot sotishni maqsad qilmaganmiz. Bizning saytimiz sizga kerak bo'lgan barcha mahsulotlarni bir joyda joylashtirish uchun yaratilgan, shunda siz umringizni qidirishga sarflamaysiz. ..." %}</p>
+					<div class="mbr-section-btn mt-3"><a class="btn btn-primary display-7" href="{% url 'index' %}">{% translate "Shop now" %}</a></div>
 				</div>
 			</div>
 		</div>

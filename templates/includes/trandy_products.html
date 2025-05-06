@@ -1,8 +1,9 @@
 {% load static %}
+{% load i18n %}
 <div class="container-fluid pt-5">
     <div class="text-center mb-4">
         {% if request.path == '/' %}
-            <h2 class="section-title px-5"><span class="px-2">Eng qaynoq to'plam</span></h2>
+            <h2 class="section-title px-5"><span class="px-2">{% translate "Eng qaynoq to'plam" %}</span></h2>
         {% endif %}
     </div>
     <div class="row px-xl-5 pb-3">
@@ -27,13 +28,13 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border" data-url="{% url 'cart:add_cart' %}" id="cartbtn" data-favorite="{% url 'favorite:add_favorite' %}" data-favorite-del="{% url 'favorite:del_favorite' %}">
-                        <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0" id="view-details"><i class="fas fa-eye text-primary mr-1"></i>Batafsil</a>
+                        <a href="{% url 'detail' product.pk %}" class="btn btn-sm text-dark p-0" id="view-details"><i class="fas fa-eye text-primary mr-1"></i>{% translate 'Read more' %}</a>
                         {% if product.id|slugify in fav_prod %}
                             <button class="btn btn-sm text-dark p-0 solid" data-product-id="{{ product.pk }}" id="solid{{ product.id }}"><i class="fa-solid fa-heart text-primary mr-1 {{ product.id }}" style="font-size: 25px;" id="solid"></i></button>
                         {% else %}
                             <button class="btn btn-sm text-dark p-0 regular" data-product-id="{{ product.pk }}" id="favorite{{ product.id }}"><i class="fa-regular fa-heart text-primary mr-1 {{ product.id }}" style="font-size: 25px;" id="regular"></i></button>
                         {% endif %}
-                        <button class="btn btn-sm text-dark p-0 add-to-cart-btn" data-product-id="{{ product.pk }}"><i class="fas fa-shopping-cart text-primary mr-1"></i>Savatga</button>
+                        <button class="btn btn-sm text-dark p-0 add-to-cart-btn" data-product-id="{{ product.pk }}"><i class="fas fa-shopping-cart text-primary mr-1"></i>{% translate 'Add to cart' %}</button>
                     </div>
                 </div>
             </div>
@@ -46,17 +47,17 @@
   <!-- Modal content -->
   <div class="modal-content col-lg-8 col-md-10 col-sm-4 w-100">
     <!-- <span class="close">&times;</span> -->
-    <p>Maxsulot savatchaga qo'shildi!</p>
+    <p>{% translate "Maxsulot savatchaga qo'shildi!" %}</p>
       <div class="rasm">
           <img src="" alt="" id="prod-rasm" width="70px">
           <div class="prod-name">
-              <p>Nomi: <span id="nomi"></span></p>
-              <p>Soni: <span id="soni"></span></p>
+              <p>{% translate "Nomi:" %} <span id="nomi"></span></p>
+              <p>{% translate "Soni:" %} <span id="soni"></span></p>
           </div>
       </div>
     <div class="modal-btn">
       <button class="btn btn-primary ok-btn" id="close">OK</button>
-      <a href="{% url 'cart:cart_summary' %}" class="btn btn-primary ok-btn">Savatchaga o'tish</a>
+      <a href="{% url 'cart:cart_summary' %}" class="btn btn-primary ok-btn">{% translate "Savatchaga o'tish" %}</a>
     </div>
   </div>
 </div>
@@ -66,18 +67,18 @@
   <!-- Modal content -->
   <div class="modal-content col-lg-8 col-md-10 col-sm-4 w-100">
     <!-- <span class="close">&times;</span> -->
-    <p>Sevimlilarga qo'shildi!</p>
+    <p>{% translate "Sevimlilarga qo'shildi!" %}</p>
       <div class="rasm">
           <img src="" alt="" id="prod-rasmi" width="70px">
           <div class="prod-name">
-              <p>Nomi: <span id="nom"></span></p>
-              <p>Narxi: <span id="narx"></span></p>
+              <p>{% translate "Nomi:" %} <span id="nom"></span></p>
+              <p>{% translate "Narxi:" %} <span id="narx"></span></p>
 
           </div>
       </div>
     <div class="modal-btn">
       <button class="btn btn-primary ok-btn" id="close">OK</button>
-      <a href="{% url 'favorite:favorites' %}" class="btn btn-primary ok-btn">Sevimlilarga o'tish</a>
+      <a href="{% url 'favorite:favorites' %}" class="btn btn-primary ok-btn">{% translate "Sevimlilarga o'tish" %}</a>
     </div>
   </div>
 </div>

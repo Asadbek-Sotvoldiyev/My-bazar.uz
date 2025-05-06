@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-fr9t^g)qn*c4ym#pfqqt$_ah63_13b^w2td(+si&#(fk!%mpqz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,9 +41,25 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'cart.apps.CartConfig',
     'favorite.apps.FavoriteConfig',
+    'modeltranslation'
 ]
 
+from django.utils.translation import gettext_lazy as _
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://76d3-94-141-76-130.ngrok-free.app",
+]
+LANGUAGES = [
+    ('uz', _("Uzbek")),
+    ('ru', _("Russian")),
+]
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+
 MIDDLEWARE = [
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -110,8 +126,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
+
+LANGUAGE_CODE = 'uz'
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
